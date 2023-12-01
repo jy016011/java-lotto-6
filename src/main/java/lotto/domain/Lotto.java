@@ -14,6 +14,16 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int getCountOfMatched(Lotto other) {
+        return (int) other.numbers.stream()
+                .filter(this.numbers::contains)
+                .count();
+    }
+
     private void validate(List<Integer> numbers) {
         ArgumentValidator.validateSize(numbers.size(), COUNT_OF_NUMBERS);
         ArgumentValidator.validateUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
