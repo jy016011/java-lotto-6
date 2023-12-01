@@ -12,7 +12,9 @@ public class OutputView {
     }
 
     public static void printUserLotteries(List<Lotto> lotteries) {
-        StringBuilder formOfLotteries = new StringBuilder(lotteries.size() + "개를 구매했습니다.");
+        StringBuilder formOfLotteries = new StringBuilder(
+                LINE_SEPARATOR + lotteries.size() + "개를 구매했습니다."
+        );
         for (Lotto lotto : lotteries) {
             formOfLotteries.append(LINE_SEPARATOR)
                     .append(lotto.getNumbers());
@@ -21,7 +23,10 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(Map<Rank, Integer> winningDetails, double profit) {
-        System.out.println("당첨 통계" + LINE_SEPARATOR + "---");
+        System.out.println(
+                LINE_SEPARATOR + "당첨 통계" +
+                        LINE_SEPARATOR + "---"
+        );
         for (Rank rank : Rank.values()) {
             if (winningDetails.containsKey(rank)) {
                 printEachRankResult(rank, winningDetails.get(rank));
