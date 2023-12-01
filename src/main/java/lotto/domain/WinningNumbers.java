@@ -16,6 +16,20 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public Rank getRankOf(Lotto lotto) {
+        int countOfMatch = getCountOfMatch(lotto);
+        boolean bonusMatched = containsBonusNumber(lotto);
+        return Rank.getBy(countOfMatch, bonusMatched);
+    }
+
+    private int getCountOfMatch(Lotto lotto) {
+        return winningLotto.getCountOfMatched(lotto);
+    }
+
+    private boolean containsBonusNumber(Lotto lotto) {
+        return lotto.contains(bonusNumber);
+    }
+
     private void validate(int bonusNumber) {
         List<Integer> numbers = new ArrayList<>(winningLotto.getNumbers());
         numbers.add(bonusNumber);
