@@ -25,8 +25,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        ArgumentValidator.validateSize(numbers.size(), COUNT_OF_NUMBERS);
-        ArgumentValidator.validateUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
+        ArgumentValidator.isEqual(numbers.size(), COUNT_OF_NUMBERS);
+        ArgumentValidator.isUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
     }
 
 }

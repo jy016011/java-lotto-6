@@ -8,40 +8,40 @@ public class ArgumentValidator {
     private ArgumentValidator() {
     }
 
-    public static void validateIsNumber(String input) {
+    public static void isNumber(String input) {
         boolean isNotNumber = !input.chars().allMatch(Character::isDigit);
         if (isNotNumber) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " 숫자만 입력해주세요.");
         }
     }
 
-    public static void validateNotLessThan(int checkingNumber, int standardNumber) {
+    public static void isNotLessThan(int checkingNumber, int standardNumber) {
         if (checkingNumber < standardNumber) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + standardNumber + " 이상의 수를 입력하세요.");
         }
     }
 
-    public static void validateNotGreaterThan(int checkingNumber, int standardNumber) {
+    public static void isNotGreaterThan(int checkingNumber, int standardNumber) {
         if (checkingNumber > standardNumber) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + standardNumber + " 이하의 수를 입력하세요.");
         }
     }
 
-    public static void validateIsDivisor(int dividend, int divisor) {
+    public static void isDivisor(int dividend, int divisor) {
         boolean canNotDivide = !(dividend % divisor == 0);
         if (canNotDivide) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + divisor + "단위 이상으로 입력하세요.");
         }
     }
 
-    public static void validateSize(int size, int limit) {
+    public static void isEqual(int size, int limit) {
         boolean notMatchSize = size != limit;
         if (notMatchSize) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + limit + "개만큼 입력하세요.");
         }
     }
 
-    public static void validateUniqueNumbersInRange(
+    public static void isUniqueNumbersInRange(
             List<Integer> numbers,
             int startInclusive,
             int endInclusive
