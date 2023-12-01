@@ -4,14 +4,14 @@ import static lotto.domain.constants.LottoConstraint.MAX_AMOUNT;
 import static lotto.domain.constants.LottoConstraint.UNIT_PRICE;
 
 import java.util.List;
+import lotto.service.ParseService;
 import lotto.utils.ArgumentValidator;
-import lotto.utils.StringParser;
 
 public class Seller {
     private int amount;
 
     public List<Lotto> sellLotto(String userInput) {
-        int amount = StringParser.toInteger(userInput);
+        int amount = ParseService.toNumber(userInput);
         checkAmount(amount);
         this.amount = amount;
         return LottoMachine.getRandomLotteries(amount);

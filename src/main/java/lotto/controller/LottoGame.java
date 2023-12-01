@@ -4,12 +4,11 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.error.Error;
 import lotto.service.GameService;
-import lotto.utils.StringParser;
+import lotto.service.ParseService;
 import lotto.views.InputView;
 import lotto.views.OutputView;
 
 public class LottoGame {
-    private static final String NUMBER_SEPARATOR = ",";
     private GameService gameService;
 
     public void init() {
@@ -44,8 +43,7 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputView.requestWinningLotto();
-                List<String> parsedInput = StringParser.toTrimmedStringList(userInput, NUMBER_SEPARATOR);
-                List<Integer> numbers = StringParser.toIntegers(parsedInput);
+                List<Integer> numbers = ParseService.toNumbers(userInput);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 Error.INVALID_WINNING_LOTTO.printMessage();
@@ -57,7 +55,7 @@ public class LottoGame {
         while (true) {
             try {
                 String userInput = InputView.requestBonusNumber();
-                int bonusNumber = StringParser.toInteger(userInput);
+                int bonusNumber = ParseService.toNumber(userInput);
                 gameService.setWinningNumbers(winningLotto, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
