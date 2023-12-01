@@ -7,11 +7,17 @@ import lotto.utils.StringParser;
 public class Seller {
     private static final int LOTTO_PRICE = 1_000;
     private static final int MAX_AMOUNT = 100_000;
+    private int amount;
 
     public List<Lotto> sellLotto(String userInput) {
         int amount = StringParser.toInteger(userInput);
         checkAmount(amount);
+        this.amount = amount;
         return LottoMachine.getRandomLotteries(amount);
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
     private void checkAmount(int amount) {
