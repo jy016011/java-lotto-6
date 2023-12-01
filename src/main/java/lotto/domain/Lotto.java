@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import lotto.utils.ArgumentValidator;
 
@@ -11,7 +14,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
+        sortNumbersByNaturalOrder();
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
     public boolean contains(int number) {
@@ -27,6 +35,10 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         ArgumentValidator.isEqual(numbers.size(), COUNT_OF_NUMBERS);
         ArgumentValidator.isUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
+    }
+
+    private void sortNumbersByNaturalOrder() {
+        numbers.sort(Comparator.naturalOrder());
     }
 
 }

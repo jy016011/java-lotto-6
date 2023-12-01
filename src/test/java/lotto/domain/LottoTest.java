@@ -46,4 +46,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
         assertThat(lotto.getCountOfMatched(winningLotto)).isEqualTo(5);
     }
+
+    @DisplayName("로또의 번호는 오름차순 정렬이어야 한다.")
+    @Test
+    void checkNumbersInLottoIsSorted() {
+        Lotto lotto = new Lotto(List.of(6, 5, 3, 4, 1, 2));
+        assertThat(lotto.getNumbers()).containsExactly(1, 2, 3, 4, 5, 6);
+    }
 }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.ArgumentValidator;
 import lotto.utils.StringParser;
@@ -12,8 +11,7 @@ public class Seller {
     public List<Lotto> sellLotto(String userInput) {
         int amount = StringParser.toInteger(userInput);
         checkAmount(amount);
-        List<Lotto> lotteries = new ArrayList<>();
-        return lotteries;
+        return LottoMachine.getRandomLotteries(amount);
     }
 
     private void checkAmount(int amount) {
