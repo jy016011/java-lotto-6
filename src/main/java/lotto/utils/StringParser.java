@@ -10,6 +10,12 @@ public class StringParser {
     private StringParser() {
     }
 
+    public static List<Integer> toIntegers(List<String> strings) {
+        return strings.stream()
+                .map(StringParser::toInteger)
+                .collect(Collectors.toList());
+    }
+
     public static List<String> toTrimmedStringList(String input, String separator) {
         return Arrays.stream(
                         input.split(separator, INCLUDING_LAST_BLANK))
