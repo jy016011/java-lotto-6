@@ -10,13 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
+    private static final int ONE = 1;
+
     private LottoMachine() {
     }
 
     public static List<Lotto> getRandomLotteries(int amount) {
         int countOfLotto = amount / UNIT_PRICE.getValue();
         List<Lotto> lotteries = new ArrayList<>();
-        for (int count = 1; count <= countOfLotto; count++) {
+        for (int count = ONE; count <= countOfLotto; count++) {
             lotteries.add(getRandomLotto());
         }
         return lotteries;

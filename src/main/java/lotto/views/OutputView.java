@@ -23,10 +23,7 @@ public class OutputView {
     }
 
     public static void printWinningStatistics(Map<Rank, Integer> winningDetails, double profit) {
-        System.out.println(
-                LINE_SEPARATOR + "당첨 통계" +
-                        LINE_SEPARATOR + "---"
-        );
+        printPrefaceOfResult();
         for (Rank rank : Rank.values()) {
             if (winningDetails.containsKey(rank)) {
                 printEachRankResult(rank, winningDetails.get(rank));
@@ -35,6 +32,13 @@ public class OutputView {
             printEachRankResult(rank, 0);
         }
         printProfit(profit);
+    }
+
+    private static void printPrefaceOfResult() {
+        System.out.println(
+                LINE_SEPARATOR + "당첨 통계" +
+                        LINE_SEPARATOR + "---"
+        );
     }
 
     private static void printEachRankResult(Rank rank, int count) {
