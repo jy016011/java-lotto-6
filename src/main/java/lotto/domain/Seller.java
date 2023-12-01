@@ -21,8 +21,20 @@ public class Seller {
     }
 
     private void checkAmount(int amount) {
+        validateMinAmount(amount);
+        validateMaxAmount(amount);
+        validateUnitPrice(amount);
+    }
+
+    private void validateMinAmount(int amount) {
         ArgumentValidator.isNotLessThan(amount, LOTTO_PRICE);
+    }
+
+    private void validateMaxAmount(int amount) {
         ArgumentValidator.isNotGreaterThan(amount, MAX_AMOUNT);
+    }
+
+    private void validateUnitPrice(int amount) {
         ArgumentValidator.isDivisor(amount, LOTTO_PRICE);
     }
 

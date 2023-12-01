@@ -12,7 +12,7 @@ public class WinningNumbers {
 
     public WinningNumbers(Lotto lotto, int bonusNumber) {
         this.winningLotto = lotto;
-        validate(bonusNumber);
+        validateIsUniqueInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -30,7 +30,7 @@ public class WinningNumbers {
         return lotto.contains(bonusNumber);
     }
 
-    private void validate(int bonusNumber) {
+    private void validateIsUniqueInRange(int bonusNumber) {
         List<Integer> numbers = new ArrayList<>(winningLotto.getNumbers());
         numbers.add(bonusNumber);
         ArgumentValidator.isUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
