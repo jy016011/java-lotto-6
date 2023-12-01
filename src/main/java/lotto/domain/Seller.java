@@ -8,18 +8,12 @@ import lotto.service.ParseService;
 import lotto.utils.ArgumentValidator;
 
 public class Seller {
-    private int amount;
-
     public List<Lotto> sellLotto(String userInput) {
         int amount = ParseService.toNumber(userInput);
         checkAmount(amount);
-        this.amount = amount;
         return LottoMachine.getRandomLotteries(amount);
     }
 
-    public int getAmount() {
-        return amount;
-    }
 
     private void checkAmount(int amount) {
         validateMinAmount(amount);

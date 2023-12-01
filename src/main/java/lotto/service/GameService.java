@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.domain.constants.LottoConstraint.UNIT_PRICE;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -12,13 +14,12 @@ import lotto.domain.WinningNumbers;
 public class GameService {
     private static final int COUNT_ONE = 1;
     private static final int TO_PERCENTAGE = 100;
-    private Seller seller;
     private WinningNumbers winningNumbers;
     private List<Lotto> lotteries;
     private Map<Rank, Integer> winningDetails;
 
     public void setLotteries(String userInput) {
-        seller = new Seller();
+        Seller seller = new Seller();
         lotteries = seller.sellLotto(userInput);
     }
 
@@ -42,7 +43,8 @@ public class GameService {
     }
 
     public double calculateProfit() {
-        return (double) getTotalPrize() / seller.getAmount() * TO_PERCENTAGE;
+        int amount = lotteries.size() * UNIT_PRICE.getValue();
+        return (double) getTotalPrize() / amount * TO_PERCENTAGE;
     }
 
     private long getTotalPrize() {
