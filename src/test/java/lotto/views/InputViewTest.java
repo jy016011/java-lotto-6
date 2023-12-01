@@ -57,4 +57,14 @@ public class InputViewTest {
         assertThat(output()).contains("당첨 번호를 입력해 주세요.");
         assertThat(systemReceived).isEqualTo(userInput);
     }
+
+    @DisplayName("보너스번호 입력 확인")
+    @Test
+    void requestBonusNumber() {
+        String userInput = "7";
+        command(userInput);
+        String systemReceived = InputView.requestBonusNumber();
+        assertThat(output()).contains("보너스 번호를 입력해 주세요.");
+        assertThat(systemReceived).isEqualTo(userInput);
+    }
 }
