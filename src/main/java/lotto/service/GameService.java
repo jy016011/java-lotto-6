@@ -22,6 +22,10 @@ public class GameService {
         lotteries = seller.sellLotto(userInput);
     }
 
+    public List<Lotto> getLotteries() {
+        return Collections.unmodifiableList(lotteries);
+    }
+
     public void setWinningNumbers(Lotto winningLotto, int bonusNumber) {
         winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
     }
