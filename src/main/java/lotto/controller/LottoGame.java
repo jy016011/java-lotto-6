@@ -36,37 +36,34 @@ public class LottoGame {
     }
 
     private void setWinningNumbers() {
-        Lotto winningLotto = getWinningLotto();
+        Lotto winningLotto = requestWinningLotto();
+        requestBonusNumber(winningLotto);
+    }
+
+    private Lotto requestWinningLotto() {
         while (true) {
             try {
-                int bonusNumber = getBonusNumber();
+                String userInput = InputView.requestWinningLotto();
+                List<String> parsedInput = StringParser.toTrimmedStringList(userInput, NUMBER_SEPARATOR);
+                List<Integer> numbers = StringParser.toIntegers(parsedInput);
+                return new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                Error.INVALID_WINNING_LOTTO.printMessage();
+            }
+        }
+    }
+
+    private void requestBonusNumber(Lotto winningLotto) {
+        while (true) {
+            try {
+                String userInput = InputView.requestBonusNumber();
+                int bonusNumber = StringParser.toInteger(userInput);
                 gameService.setWinningNumbers(winningLotto, bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 Error.INVALID_BONUS_NUMBER.printMessage();
             }
         }
-    }
-
-    private Lotto getWinningLotto() {
-        Lotto winningLotto;
-        while (true) {
-            try {
-                String userInput = InputView.requestWinningLotto();
-                List<String> parsedInput = StringParser.toTrimmedStringList(userInput, NUMBER_SEPARATOR);
-                List<Integer> numbers = StringParser.toIntegers(parsedInput);
-                winningLotto = new Lotto(numbers);
-                break;
-            } catch (IllegalArgumentException e) {
-                Error.INVALID_WINNING_LOTTO.printMessage();
-            }
-        }
-        return winningLotto;
-    }
-
-    private int getBonusNumber() {
-        String userInput = InputView.requestBonusNumber();
-        return StringParser.toInteger(userInput);
     }
 
     private void printResult() {

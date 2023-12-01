@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstraint.MAX_AMOUNT;
+import static lotto.domain.constants.LottoConstraint.UNIT_PRICE;
+
 import java.util.List;
 import lotto.utils.ArgumentValidator;
 import lotto.utils.StringParser;
 
 public class Seller {
-    private static final int LOTTO_PRICE = 1_000;
-    private static final int MAX_AMOUNT = 100_000;
     private int amount;
 
     public List<Lotto> sellLotto(String userInput) {
@@ -27,15 +28,15 @@ public class Seller {
     }
 
     private void validateMinAmount(int amount) {
-        ArgumentValidator.isNotLessThan(amount, LOTTO_PRICE);
+        ArgumentValidator.isNotLessThan(amount, UNIT_PRICE.getValue());
     }
 
     private void validateMaxAmount(int amount) {
-        ArgumentValidator.isNotGreaterThan(amount, MAX_AMOUNT);
+        ArgumentValidator.isNotGreaterThan(amount, MAX_AMOUNT.getValue());
     }
 
     private void validateUnitPrice(int amount) {
-        ArgumentValidator.isDivisor(amount, LOTTO_PRICE);
+        ArgumentValidator.isDivisor(amount, UNIT_PRICE.getValue());
     }
 
 }

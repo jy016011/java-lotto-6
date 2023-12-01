@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstraint.COUNT_OF_NUMBERS;
+import static lotto.domain.constants.LottoConstraint.MAX_NUMBER;
+import static lotto.domain.constants.LottoConstraint.MIN_NUMBER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -7,9 +11,6 @@ import java.util.List;
 import lotto.utils.ArgumentValidator;
 
 public class Lotto {
-    private static final int COUNT_OF_NUMBERS = 6;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -38,11 +39,11 @@ public class Lotto {
     }
 
     private void validateCountOfNumbers(List<Integer> numbers) {
-        ArgumentValidator.isEqual(numbers.size(), COUNT_OF_NUMBERS);
+        ArgumentValidator.isEqual(numbers.size(), COUNT_OF_NUMBERS.getValue());
     }
 
     private void validateIsUniqueNumbersInRange(List<Integer> numbers) {
-        ArgumentValidator.isUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
+        ArgumentValidator.isUniqueNumbersInRange(numbers, MIN_NUMBER.getValue(), MAX_NUMBER.getValue());
     }
 
     private void sortNumbersByNaturalOrder() {

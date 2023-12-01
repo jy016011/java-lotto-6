@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstraint.MAX_NUMBER;
+import static lotto.domain.constants.LottoConstraint.MIN_NUMBER;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.ArgumentValidator;
 
 public class WinningNumbers {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
     private final Lotto winningLotto;
     private final int bonusNumber;
 
@@ -33,6 +34,9 @@ public class WinningNumbers {
     private void validateIsUniqueInRange(int bonusNumber) {
         List<Integer> numbers = new ArrayList<>(winningLotto.getNumbers());
         numbers.add(bonusNumber);
-        ArgumentValidator.isUniqueNumbersInRange(numbers, MIN_NUMBER, MAX_NUMBER);
+        ArgumentValidator.isUniqueNumbersInRange(
+                numbers,
+                MIN_NUMBER.getValue(), MAX_NUMBER.getValue()
+        );
     }
 }
