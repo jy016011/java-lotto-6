@@ -47,4 +47,14 @@ public class InputViewTest {
         assertThat(output()).contains("구입금액을 입력해 주세요.");
         assertThat(systemReceived).isEqualTo(userInput);
     }
+
+    @DisplayName("당첨번호 입력 확인")
+    @Test
+    void requestWinningLotto() {
+        String userInput = "1,2,3,4,5,6";
+        command(userInput);
+        String systemReceived = InputView.requestWinningLotto();
+        assertThat(output()).contains("당첨 번호를 입력해 주세요.");
+        assertThat(systemReceived).isEqualTo(userInput);
+    }
 }

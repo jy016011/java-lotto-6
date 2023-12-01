@@ -38,8 +38,8 @@ public class OutputViewTest {
     void printAllLotteries() {
         List<Lotto> lotteries = new ArrayList<>(
                 List.of(
-                        new Lotto(List.of(1, 2, 3, 4, 5, 6)),
-                        new Lotto(List.of(7, 8, 9, 10, 11, 12))
+                        new Lotto(List.of(1, 2, 3, 6, 5, 4)),
+                        new Lotto(List.of(7, 8, 12, 10, 11, 9))
                 )
         );
         OutputView.printUserLotteries(lotteries);
